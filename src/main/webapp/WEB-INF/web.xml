@@ -13,6 +13,21 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:config/spring-*.xml</param-value>
 	</context-param>
+	
+	<!-- cxf风格的webservice -->
+	<servlet>
+		<servlet-name>cxf</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<!-- 配置文件路径配置，可以使用默认值 "/WEB-INF/cxf-servlet.xml" -->
+		<init-param>
+			<param-name>config-location</param-name>
+			<param-value>classpath*:config/cxf-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cxf</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
 
 	<!-- 乱码 -->
 	<filter>

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.offcn.domain.QueryVO;
+import com.offcn.domain.Student;
 import com.offcn.service.FoodService;
+import com.offcn.service.PhoneService;
 
 @Controller
 @RequestMapping(value = "/Food")
@@ -16,6 +18,9 @@ public class FoodController {
 
 	@Autowired
 	private FoodService foodService;
+
+	@Autowired
+	private PhoneService phoneService;
 
 	@RequestMapping(value = "/grabData.action")
 	@ResponseBody
@@ -69,20 +74,39 @@ public class FoodController {
 
 		return queryVO;
 	}
-	
-	
+
 	@RequestMapping(value = "/testIp.action")
 	@ResponseBody
 	public QueryVO testIp(HttpServletRequest request) {
-		
+
 		QueryVO queryVO = new QueryVO();
-		
-		queryVO .setResult(request.getRemoteAddr());
-		
+
+		queryVO.setResult(request.getRemoteAddr());
+
 		return queryVO;
 	}
-	
-	
-	
+
+	@RequestMapping(value = "/queryNumber.action")
+	@ResponseBody
+	public QueryVO queryNumber(String phoneNumber) {
+
+		System.out.println("查询的手机号：" + phoneNumber);
+
+		QueryVO queryVO = new QueryVO();
+
+		String result = null;
+
+		Student student = phoneService.queryPhoneLocation(phoneNumber);
+
+		if (student != null)
+			result = student.getMobileArea() + student.getMobileType();
+
+		else
+			result = "号码在号段库暂时不存在";
+
+		queryVO.setResult(result);
+
+		return queryVO;
+	}
 
 }

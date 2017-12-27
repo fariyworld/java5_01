@@ -30,6 +30,10 @@
 	<a href="javascript: grab()">抓取价格数据</a>
 	<br />
 	<br />
+	<input type="text" id="phoneNumber" />
+	<button>查询归属地</button>
+	<br />
+	<br />
 	<a href="javascript: testIp()">测试ip</a>
 	<br />
 	<br />
@@ -201,6 +205,29 @@
 				console.log(data.result);
 			},"json");
 		}
+		
+		//查询归属地
+		$("button").click(function(){
+		
+			var phoneNumber = $("#phoneNumber").val();
+			
+			if(phoneNumber){
+			
+				var url = "Food/queryNumber.action";
+				
+				var data = {"phoneNumber":phoneNumber};
+				
+				$.post(url,data,function(data){
+				
+					alert(data.result);
+					
+				},"json");
+			
+			}else{
+			
+				alert("手机号不能为空");
+			}
+		});
 
 	</script>
 </body>
