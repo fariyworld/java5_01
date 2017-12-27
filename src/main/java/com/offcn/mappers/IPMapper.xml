@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.offcn.mappers.IPMapper">
+	
+	<select id="findIPAccessCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+	
+		SELECT 
+		  COUNT(*) 
+		FROM
+		  iprecord 
+		WHERE ipAddress = #{ipAddress} 
+		  AND accessTime BETWEEN 
+		  (SELECT 
+		    SUBDATE(NOW(), INTERVAL 1 HOUR)) 
+		  AND 
+		  (SELECT 
+		    CURRENT_TIMESTAMP())
+	
+	</select>
+	
+	<insert id="insert" parameterType="java.lang.String">
+	
+		INSERT INTO iprecord (ipAddress) 
+		VALUES
+		  (#{ipAddress})
+	
+	</insert>
+	
+</mapper>
