@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	
+	<!-- 加载src下的c3p0.properties属性配置文件 -->
+	<context:property-placeholder location="classpath:c3p0.properties"/>
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${c3p0.driverClass}"></property>
+		<property name="jdbcUrl" value="${c3p0.jdbcUrl}"></property>
+		<property name="user" value="${c3p0.user}"></property>
+		<property name="password" value="${c3p0.password}"></property>
+		
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}"></property>
+		<property name="minPoolSize" value="${c3p0.minPoolSize}"></property>
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}"></property>
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}"></property>
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"></property>
+		<property name="acquireRetryAttempts" value="${c3p0.acquireRetryAttempts}"></property>
+		<property name="acquireRetryDelay" value="${c3p0.acquireRetryDelay}"></property>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:SqlSessionConfig.xml"></property>
+	</bean>
+	
+	<!-- 扫描包形式，配置代理对象，不需要注入sqlSessionFactory -->
+	<!-- 配置扫描之后，在spring容器中就会生成每个接口对应的代理对象，代理对象的id接口名首字母小写 -->
+ 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+ 		<!-- 配置接口 -->
+ 		<property name="basePackage" value="com.offcn.mappers"></property>
+ 	</bean>
+ 	
+</beans>

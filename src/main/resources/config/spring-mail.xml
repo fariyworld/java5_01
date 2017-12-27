@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/context
+				http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Spring提供的发送电子邮件的高级抽象类 -->
+	<!-- QQ邮箱 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- 邮件smtp服务器地址 -->
+		<property name="host" value="smtp.qq.com" />
+		<!-- 端口 -->
+		<property name="port" value="587"></property>
+		<!-- 协议 -->
+		<property name="protocol" value="smtp"/>
+		<!-- 邮箱用户名 -->
+		<property name="username" value="1525752742@qq.com" />
+		<!-- 邮箱密码 -->
+		<property name="password" value="dwsdgcmqfvqcheif" />
+		<!-- 编码格式 -->
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 邮箱服务器属性设置 -->
+		<property name="javaMailProperties">
+			<props>
+				<!-- 邮箱服务器是否支持验证 -->
+				<prop key="mail.smtp.auth">true</prop>
+				<!-- 邮箱服务器连接超时时间 毫秒 -->
+				<prop key="mail.smtp.timeout">300000</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 其他邮箱 -->
+	<bean id="mailSender2" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- 邮件smtp服务器地址 -->
+		<property name="host" value="smtp.qq.com" />
+		<!-- 邮箱用户名 -->
+		<property name="username" value="" />
+		<!-- 邮箱密码 -->
+		<property name="password" value="" />
+		<!-- 编码格式 -->
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 邮箱服务器属性设置 -->
+		<property name="javaMailProperties">
+			<props>
+				<!-- 邮箱服务器是否支持验证 -->
+				<prop key="mail.smtp.auth">true</prop>
+				<!-- 邮箱服务器连接超时时间 毫秒 -->
+				<prop key="mail.smtp.timeout">300000</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

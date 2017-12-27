@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.offcn.mappers.FoodMapper">
+	
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+	
+		INSERT INTO food (
+		  foodName,
+		  minPrice,
+		  avgPrice,
+		  maxPrice,
+		  specification,
+		  unit,
+		  publishDate,
+		  type
+		) 
+		VALUES
+		<foreach collection="list" item="food" index="index" open="" close="" separator=",">
+		
+			(
+				#{food.foodName}, #{food.minPrice}, #{food.avgPrice},#{food.maxPrice}, 
+				#{food.specification}, #{food.unit}, #{food.publishDate}, #{food.type}
+			)
+			
+		</foreach>
+  		
+	</insert>
+	
+	<select id="getListByFoodName" parameterType="java.lang.String" resultType="com.offcn.domain.Food">
+		SELECT 
+		  f.foodName,
+		  f.minPrice,
+		  f.avgPrice,
+		  f.maxPrice,
+		  f.specification,
+		  f.unit,
+		  f.publishDate,
+		  f.type 
+		FROM
+		  food f 
+		WHERE foodName LIKE #{foodName} 
+	</select>
+	
+	<select id="getListByFoodNameAndDate" parameterType="com.offcn.domain.QueryVO" resultType="com.offcn.domain.Food">
+		SELECT 
+		  f.foodName,
+		  f.minPrice,
+		  f.avgPrice,
+		  f.maxPrice,
+		  f.specification,
+		  f.unit,
+		  f.publishDate,
+		  f.type 
+		FROM
+		  food f 
+		WHERE foodName LIKE #{foodName} 
+		  AND publishDate BETWEEN #{startTime} AND #{endTime} 
+		   AND publishDate NOT IN (#{endTime})
+	</select>
+	
+	
+	<select id="getLastTime" resultType="java.lang.String" >
+		
+		SELECT 
+		  * 
+		FROM
+		  food  
+		ORDER BY publishDate DESC
+		
+	</select>
+	
+</mapper>

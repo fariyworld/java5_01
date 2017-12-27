@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="job1"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<bean class="com.offcn.quartz.TestJob" />
+		</property>
+		<property name="targetMethod" value="run" />
+		<property name="concurrent" value="false" /><!-- 作业不并发调度 -->
+	</bean>
+	
+	<!-- 更新数据库food表，并发送邮件 -->
+	<bean id="updateDBAndSendMail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<bean class="com.offcn.quartz.FoodQuartz" />
+		</property>
+		<property name="targetMethod" value="updateDBAndSendMail" />
+		<property name="concurrent" value="false" /><!-- 作业不并发调度 -->
+	</bean>
+
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="updateDBAndSendMail" />
+		<property name="cronExpression" value="0 0/1 22 * * ?" />
+		<!-- 从 17 点开始直到 17 点 59 分每 隔 15 分钟运行一次 -->
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+
+</beans>
