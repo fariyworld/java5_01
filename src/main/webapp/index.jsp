@@ -56,6 +56,8 @@
 		var chart = echarts.init(document.getElementById('main'));
 		var data1 ;
 		var data2 ;
+		var yearChartsMap;
+		var chartDatas = new Array();
 		//抓取数据函数
 		function grab() {
 			var grabObjVal = $("select[name=GrabObj]").val();
@@ -96,9 +98,7 @@
 					};
 					$.post(url, data, function(data) {
 						alert(data.result);
-	
-						var yearChartsMap = data.yearChartMap;
-						var chartDatas = new Array();
+						yearChartsMap = data.yearChartMap;
 						var chartData = new Array();
 						for (var i = 0; i <= 1; i++) {
 	
@@ -181,14 +181,24 @@
 			$("#exportImg").show();
 		}
 	
-		//生成PDF
+		//生成PDF,传参：数据集合
 		function exportImg() {
 			
 			var imgdata = chart.getDataURL();
 			
 			var url = "Food/exportChartToPDF.action";
 			
-			$.post(url,{"imgdata":imgdata},function(data){
+			var data = {
+			
+				"imgdata":imgdata,
+				
+				"type": chartDatas[2],
+				
+				"yearChartMap":yearChartsMap
+			
+			};
+			
+			$.post(url,data,function(data){
 				alert(data.result);
 			},"json");
 			

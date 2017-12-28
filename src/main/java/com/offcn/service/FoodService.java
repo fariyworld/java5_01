@@ -16,7 +16,7 @@ public interface FoodService {
 	
 	public Map<Integer, Map<Integer, Double>> getMonthChart(QueryVO queryVO);
 	
-	public boolean saveChartToPDF(String baseData);
+	public boolean saveChartToPDF(String baseData, QueryVO queryVO);
 	
 	public String getLastTime();
 

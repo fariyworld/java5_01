@@ -62,17 +62,17 @@ public class FoodController {
 
 	@RequestMapping(value = "/exportChartToPDF.action")
 	@ResponseBody
-	public QueryVO exportChartToPDF(String imgdata) {
+	public QueryVO exportChartToPDF(String imgdata,QueryVO queryVO) {
 
-		QueryVO queryVO = new QueryVO();
-
-		if (foodService.saveChartToPDF(imgdata))
-			queryVO.setResult("save pdf success");
+		QueryVO queryVO2 = new QueryVO();
+		
+		if (foodService.saveChartToPDF(imgdata,queryVO))
+			queryVO2.setResult("save pdf success");
 
 		else
-			queryVO.setResult("save pdf failed");
+			queryVO2.setResult("save pdf failed");
 
-		return queryVO;
+		return queryVO2;
 	}
 
 	@RequestMapping(value = "/testIp.action")

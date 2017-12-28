@@ -278,9 +278,9 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-	public boolean saveChartToPDF(String baseData) {
+	public boolean saveChartToPDF(String baseData,QueryVO queryVO) {
 
-		return CreatePDFUtil.saveChartToPDF(baseData);
+		return CreatePDFUtil.saveChartToPDF(baseData,queryVO);
 	}
 
 	@Override
