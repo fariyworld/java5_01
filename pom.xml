@@ -5,14 +5,14 @@
 	<artifactId>httpclient_jsoup</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
 	<properties>
 		<webVersion>3.1</webVersion>
 		<cxf.version>3.1.7</cxf.version>
 		<jackson.version>2.8.1</jackson.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
@@ -97,6 +97,7 @@
 			<artifactId>jackson-jaxrs-json-provider</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+
 
 		<!-- Itext PDF相关 -->
 		<dependency>

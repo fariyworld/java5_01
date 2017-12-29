@@ -12,11 +12,27 @@
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<context:annotation-config />
-	<!-- 创建入门服务 bean -->
+	<!-- 查询手机号码归属地系统 -->
 	<bean id="phoneServiceRestFul" class="com.offcn.service.impl.PhoneServiceImpl"></bean>
 	<jaxrs:server id="restUserService" address="/phone">
 		<jaxrs:serviceBeans>
 			<ref bean="phoneServiceRestFul" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+			<entry key="xml" value="application/xml" />
+		</jaxrs:extensionMappings>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+	
+	
+	<!-- 百度AI 人脸识别系统 -->
+	<bean id="faceService" class="com.offcn.service.impl.FaceServiceImpl"></bean>
+	<jaxrs:server id="cxfFaceService" address="/face">
+		<jaxrs:serviceBeans>
+			<ref bean="faceService"/>
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="json" value="application/json" />
