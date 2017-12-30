@@ -1,6 +1,5 @@
 package com.offcn.service;
 
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -9,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import com.offcn.domain.FaceAccessToken;
 import com.offcn.domain.FaceIdentifyBean;
 import com.offcn.domain.FaceRegisterBean;
+import com.offcn.domain.FaceUpdateBean;
 
 public interface FaceService {
 
@@ -20,7 +20,7 @@ public interface FaceService {
 	 * @param client_secret
 	 * @return FaceAccessToken
 	 */
-	@GET
+	@POST
 	@Path("/getAccessToken")
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	FaceAccessToken getAccessToken(String client_id, String client_secret);
@@ -43,5 +43,23 @@ public interface FaceService {
 	 * @param faceIdentifyBean
 	 * @return FaceIdentifyBean
 	 */
+	@POST
+	@Path("/identifyFace")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	FaceIdentifyBean identifyFace(FaceIdentifyBean faceIdentifyBean);
+	
+	/**
+	 * 
+	 * @TODO: 人脸更新
+	 * @param faceUpdateBean
+	 * @return FaceUpdateBean
+	 */
+	@POST
+	@Path("/updateFace")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	FaceUpdateBean updateFace(FaceUpdateBean faceUpdateBean);
+	
+	
+	
+	
 }

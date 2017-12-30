@@ -11,6 +11,7 @@ public enum FaceConstant {
 	 */
 	registerUrl("https://aip.baidubce.com/rest/2.0/face/v2/faceset/user/add"),
 	
+	
 	/*
 	 * 获取Access Token：请求URL数据格式
 	 * 
@@ -24,10 +25,18 @@ public enum FaceConstant {
 	accessTokenUrl("https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&"),
 	client_id("zw99HIZ00fCIq2Avvac69f2G"),
 	client_secret("U5AeVa0xuFc32hwur8bX5QH8V8Xron7d"),
-	access_token("access_token=24.3d549b067053dff6c088add8a32428a0.2592000.1517066386.282335-10599554"),
+	access_token("24.3d549b067053dff6c088add8a32428a0.2592000.1517066386.282335-10599554"),
+	
+	/**
+	 * 人脸识别
+	 */
+	identifyUrl("https://aip.baidubce.com/rest/2.0/face/v2/identify"),
 	
 	
-	identifyUrl("https://aip.baidubce.com/rest/2.0/face/v2/identify");
+	/**
+	 * 人脸更新
+	 */
+	updateUrl("https://aip.baidubce.com/rest/2.0/face/v2/faceset/user/update");
 	
 	private String value;
 

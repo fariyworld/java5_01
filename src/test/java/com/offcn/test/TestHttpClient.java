@@ -5,6 +5,7 @@ import org.junit.Test;
 import com.offcn.domain.FaceAccessToken;
 import com.offcn.domain.FaceIdentifyBean;
 import com.offcn.domain.FaceRegisterBean;
+import com.offcn.domain.FaceUpdateBean;
 import com.offcn.enums.FaceConstant;
 import com.offcn.service.FaceService;
 import com.offcn.service.impl.FaceServiceImpl;
@@ -52,7 +53,6 @@ public class TestHttpClient {
 		FaceRegisterBean addFace = faceService.addFace(faceRegisterBean);
 		
 		System.out.println(addFace);
-		
 	}
 	
 	/**
@@ -67,13 +67,34 @@ public class TestHttpClient {
 		faceIdentifyBean.setAccess_token(FaceConstant.access_token.getVal());
 		
 		faceIdentifyBean.setGroup_id("java0815");
-		faceIdentifyBean.setImages(FileUtils.getPicStrByImages("D:/BaiduYunDownload/002.jpg"));
+		faceIdentifyBean.setImages(FileUtils.getPicStrByImages("D:/BaiduYunDownload/001.jpg"));
 		
 		FaceService faceService = new FaceServiceImpl();
 		
 		FaceIdentifyBean identifyFace = faceService.identifyFace(faceIdentifyBean);
 		
 		System.out.println(identifyFace);
+	}
+	
+	/**
+	 * 
+	 * @TODO:  人脸更新
+	 */
+	@Test
+	public void test4() {
+		
+		FaceUpdateBean faceUpdateBean = new FaceUpdateBean();
+		
+		faceUpdateBean.setAccess_token(FaceConstant.access_token.getVal());
+		
+		faceUpdateBean.setUid("java0815001");
+		faceUpdateBean.setImages(FileUtils.getPicStrByImages("D:/BaiduYunDownload/002.jpg"));
+		
+		FaceService faceService = new FaceServiceImpl();
+		
+		FaceUpdateBean updateFace = faceService.updateFace(faceUpdateBean);
+		
+		System.out.println(updateFace);
 	}
 	
 }

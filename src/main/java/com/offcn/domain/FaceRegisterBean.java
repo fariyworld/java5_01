@@ -17,7 +17,7 @@ public class FaceRegisterBean {
 	/** 注册成功返回json值： */
 	private String log_id;
 
-	/** 注册失败返回json值： */
+	/** 注册失败返回json值+log_id： */
 	private String error_code;
 	private String error_msg;
 
