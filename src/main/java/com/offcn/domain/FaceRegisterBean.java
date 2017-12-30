@@ -1,5 +1,7 @@
 package com.offcn.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 
  * @TODO: 人脸注册JavaBean
@@ -9,6 +11,7 @@ package com.offcn.domain;
  *           216616, "log_id": 674786177, "error_msg": "image exist" }
  * 
  */
+@XmlRootElement
 public class FaceRegisterBean {
 
 	/** 注册成功返回json值： */

@@ -3,6 +3,7 @@ package com.offcn.test;
 import org.junit.Test;
 
 import com.offcn.domain.FaceAccessToken;
+import com.offcn.domain.FaceIdentifyBean;
 import com.offcn.domain.FaceRegisterBean;
 import com.offcn.enums.FaceConstant;
 import com.offcn.service.FaceService;
@@ -12,6 +13,10 @@ import com.offcn.utils.HttpClientUtil;
 
 public class TestHttpClient {
 
+	/**
+	 * 
+	 * @TODO:  测试获取accessToken
+	 */
 	@Test
 	public void test1() {
 
@@ -20,11 +25,16 @@ public class TestHttpClient {
 				+ "client_id=zw99HIZ00fCIq2Avvac69f2G&"
 				+ "client_secret=U5AeVa0xuFc32hwur8bX5QH8V8Xron7d";
 
-		FaceAccessToken accessToken = HttpClientUtil.doGet(FaceAccessToken.class, url);
+		FaceAccessToken accessToken = HttpClientUtil.doPost(FaceAccessToken.class, url);
 		
 		System.out.println(accessToken);
 	}
 	
+	
+	/**
+	 * 
+	 * @TODO:  测试人脸注册
+	 */
 	@Test
 	public void test2() {
 		
@@ -44,4 +54,26 @@ public class TestHttpClient {
 		System.out.println(addFace);
 		
 	}
+	
+	/**
+	 * 
+	 * @TODO:  测试人脸识别
+	 */
+	@Test
+	public void test3() {
+		
+		FaceIdentifyBean faceIdentifyBean = new FaceIdentifyBean();
+		
+		faceIdentifyBean.setAccess_token(FaceConstant.access_token.getVal());
+		
+		faceIdentifyBean.setGroup_id("java0815");
+		faceIdentifyBean.setImages(FileUtils.getPicStrByImages("D:/BaiduYunDownload/002.jpg"));
+		
+		FaceService faceService = new FaceServiceImpl();
+		
+		FaceIdentifyBean identifyFace = faceService.identifyFace(faceIdentifyBean);
+		
+		System.out.println(identifyFace);
+	}
+	
 }

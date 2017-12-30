@@ -74,7 +74,7 @@ public class HttpClientUtil {
 	 * @param url
 	 * @return T
 	 */
-	public static <T> T doGet(Class<T> clazz, String url) {
+	public static <T> T doPost(Class<T> clazz, String url) {
 
 		T t = null;
 
@@ -82,7 +82,7 @@ public class HttpClientUtil {
 
 		try {
 
-			HttpGet request = new HttpGet(url);
+			HttpPost request = new HttpPost(url);
 
 			CloseableHttpResponse response = client.execute(request);
 
