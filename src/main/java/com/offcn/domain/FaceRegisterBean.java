@@ -7,8 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @TODO: 人脸注册JavaBean
  * @Administrator: 黄土高坡的宝宝
  * @Date: 2017年12月28日下午8:38:44
- * @Version: V1.0.0 // 注册成功 { "log_id": 73473737, } // 注册发生错误 { "error_code":
- *           216616, "log_id": 674786177, "error_msg": "image exist" }
+ * @Version: V1.0.0 
+ * // 注册成功 { "log_id": 73473737, } 
+ * // 注册发生错误 { "error_code":216616, "log_id": 674786177, "error_msg": "image exist" }
  * 
  */
 @XmlRootElement

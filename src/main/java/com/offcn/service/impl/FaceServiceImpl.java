@@ -1,8 +1,5 @@
 package com.offcn.service.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.stereotype.Service;
 
 import com.offcn.domain.FaceAccessToken;
@@ -47,13 +44,7 @@ public class FaceServiceImpl implements FaceService {
 
 		faceRegisterBean.setAccess_token(null);
 
-		String header = FaceConstant.Content_Type.getVal();
-
-		Map<String, String> headerMap = new HashMap<String, String>();
-
-		headerMap.put("Content-Type", header);
-
-		return HttpClientUtil.doPost(url, faceRegisterBean, headerMap);
+		return HttpClientUtil.doPost(url, faceRegisterBean, HttpClientUtil.setCommonHeader());
 	}
 
 	/**
@@ -75,13 +66,7 @@ public class FaceServiceImpl implements FaceService {
 
 		faceIdentifyBean.setAccess_token(null);
 		
-		String header = FaceConstant.Content_Type.getVal();
-
-		Map<String, String> headerMap = new HashMap<String, String>();
-
-		headerMap.put("Content-Type", header);
-		
-		return HttpClientUtil.doPost(url, faceIdentifyBean, headerMap);
+		return HttpClientUtil.doPost(url, faceIdentifyBean, HttpClientUtil.setCommonHeader());
 	}
 
 	
@@ -104,13 +89,20 @@ public class FaceServiceImpl implements FaceService {
 
 		faceUpdateBean.setAccess_token(null);
 		
-		String header = FaceConstant.Content_Type.getVal();
+		return HttpClientUtil.doPost(url, faceUpdateBean, HttpClientUtil.setCommonHeader());
+	}
 
-		Map<String, String> headerMap = new HashMap<String, String>();
-
-		headerMap.put("Content-Type", header);
+	@Override
+	public FaceAccessToken test(String client_id,String client_secret) {
 		
-		return HttpClientUtil.doPost(url, faceUpdateBean, headerMap);
+		String url = FaceConstant.accessTokenUrl.getVal() 
+				+ "client_id=" + client_id 
+				+ "&client_secret=" + client_secret;
+		
+		FaceAccessToken faceAccessToken = HttpClientUtil.doPost(FaceAccessToken.class, url);
+
+		return faceAccessToken;
+		
 	}
 
 }

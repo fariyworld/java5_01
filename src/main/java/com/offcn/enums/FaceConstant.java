@@ -25,7 +25,10 @@ public enum FaceConstant {
 	accessTokenUrl("https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&"),
 	client_id("zw99HIZ00fCIq2Avvac69f2G"),
 	client_secret("U5AeVa0xuFc32hwur8bX5QH8V8Xron7d"),
-	access_token("24.3d549b067053dff6c088add8a32428a0.2592000.1517066386.282335-10599554"),
+	//access_token("24.3d549b067053dff6c088add8a32428a0.2592000.1517066386.282335-10599554"),
+	//access_token("24.752534b8cc1f82d5efef8d1934b09f79.2592000.1517235143.282335-10599554"),
+	//access_token("24.6e7f92daf20fba33dd4973a87fa8916e.2592000.1517235379.282335-10599554"),
+	access_token("24.d31bf66f76aa5f369ec6340255807f45.2592000.1517235808.282335-10599554"),
 	
 	/**
 	 * 人脸识别

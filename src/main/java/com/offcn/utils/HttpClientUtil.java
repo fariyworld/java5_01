@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -22,6 +23,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.offcn.enums.FaceConstant;
 
 public class HttpClientUtil {
 
@@ -69,7 +71,7 @@ public class HttpClientUtil {
 
 	/**
 	 * 
-	 * @TODO: HttpClient 发送 get请求
+	 * @TODO: HttpClient 发送 post请求
 	 * @param clazz
 	 * @param url
 	 * @return T
@@ -220,7 +222,7 @@ public class HttpClientUtil {
 
 	/**
 	 * 
-	 * @描述： 首字母大写
+	 * @TODO: 首字母大写
 	 * 
 	 * @param str
 	 * @return String
@@ -234,7 +236,7 @@ public class HttpClientUtil {
 
 	/**
 	 * 
-	 * @描述： 获得属性名
+	 * @TODO: 获得属性名
 	 * 
 	 * @param str
 	 * @return String
@@ -244,4 +246,19 @@ public class HttpClientUtil {
 		return str.substring(str.lastIndexOf(".") + 1);
 	}
 
+	/**
+	 * 
+	 * @TODO: 设置通用的header
+	 * @return Map<String,String>
+	 */
+	public static Map<String, String> setCommonHeader(){
+		
+		String header = FaceConstant.Content_Type.getVal();
+
+		Map<String, String> headerMap = new HashMap<String, String>();
+
+		headerMap.put("Content-Type", header);
+		
+		return headerMap;
+	}
 }
