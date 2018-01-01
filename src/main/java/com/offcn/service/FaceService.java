@@ -6,6 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.offcn.domain.FaceAccessToken;
 import com.offcn.domain.FaceIdentifyBean;
@@ -32,7 +33,7 @@ public interface FaceService {
 	@GET
 	@Path("/test/{client_id}/{client_secret}")
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
-	FaceAccessToken test(@PathParam("client_id") String client_id, @PathParam("client_secret") String client_secret);
+	Response test(@PathParam("client_id") String client_id, @PathParam("client_secret") String client_secret);
 	
 	/**
 	 * 
@@ -66,8 +67,5 @@ public interface FaceService {
 	@Path("/updateFace")
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	FaceUpdateBean updateFace(FaceUpdateBean faceUpdateBean);
-	
-	
-	
 	
 }

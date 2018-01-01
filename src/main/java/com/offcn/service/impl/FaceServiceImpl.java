@@ -1,5 +1,7 @@
 package com.offcn.service.impl;
 
+import javax.ws.rs.core.Response;
+
 import org.springframework.stereotype.Service;
 
 import com.offcn.domain.FaceAccessToken;
@@ -93,15 +95,15 @@ public class FaceServiceImpl implements FaceService {
 	}
 
 	@Override
-	public FaceAccessToken test(String client_id,String client_secret) {
+	public Response test(String client_id,String client_secret) {
 		
 		String url = FaceConstant.accessTokenUrl.getVal() 
 				+ "client_id=" + client_id 
 				+ "&client_secret=" + client_secret;
 		
 		FaceAccessToken faceAccessToken = HttpClientUtil.doPost(FaceAccessToken.class, url);
-
-		return faceAccessToken;
+		
+		return Response.ok(faceAccessToken).build();
 		
 	}
 

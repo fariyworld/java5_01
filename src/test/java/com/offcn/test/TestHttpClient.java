@@ -97,4 +97,9 @@ public class TestHttpClient {
 		System.out.println(updateFace);
 	}
 	
+	@Test
+	public void test5(){
+		
+		System.out.println("aaa");
+	}
 }

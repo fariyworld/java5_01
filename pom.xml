@@ -238,6 +238,7 @@
 				<configuration>
 					<forkMode>once</forkMode>
 					<argLine>-Dfile.encoding=UTF-8</argLine>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 

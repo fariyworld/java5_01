@@ -2,7 +2,7 @@ package com.offcn.domain;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="faceAccessToken")
+@XmlRootElement(name="FaceAccessToken")
 public class FaceAccessToken {
 
 	private String access_token;
